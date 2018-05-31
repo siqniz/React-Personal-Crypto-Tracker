@@ -63,11 +63,17 @@ class CoinList extends Component {
             });
         }
 
-
         return (
             <div className={classes.Coinlist}>
-                {forminputs}
-                {coins}
+                <div className={classes.Threepanel}>
+                    {forminputs}
+                </div>
+                <div className={classes.Threepanel}>
+                    {coins}
+                </div>
+                <div className={classes.Threepanel}>
+                    Individal coins will display on this planel
+                </div>
             </div>
         );
     }

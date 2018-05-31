@@ -10,3 +10,8 @@
 .Coinlist a:visited{
     color: cornflowerblue;
 }
+
+.Threepanel{
+    width:33%;
+    display: inline-block
+}
