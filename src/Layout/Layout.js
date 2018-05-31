@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink, withRouter, Route } from 'react-router-dom';
 
+import Coin from '../componenets/CoinList/Coin/Coin';
+import Form from '../componenets/Forms/Forms';
+
 import classes from './Layout.css';
 
-import Coin from '../componenets/CoinList/Coin/Coin';
+
 
 
 const layout = (props) => (
@@ -13,8 +16,10 @@ const layout = (props) => (
                 <li ><NavLink to='/'>Home </NavLink></li>
                 <li ><NavLink to='/btc'>BTC</NavLink ></li>
                 <li ><NavLink to='/trx'>TRX </NavLink></li>
+
             </ul>
         </nav>
+
         <Route path="/coin" component={Coin} />
     </div>
 )

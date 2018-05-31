@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
 import Coin from './Coin/Coin';
-
 import classes from './Coinlist.css';
-
 import btcaxois from '../../axios'
+import Form from '../Forms/Forms'
 
 
 class CoinList extends Component {
 
     state = {
+        formdata: {
+            search: {
+                elementtype: 'input',
+                elementconfig: {
+                    placeholder: 'search'
+                }
+            }
+        },
         coins: {
             btc: null,
             trx: null
@@ -28,6 +34,19 @@ class CoinList extends Component {
     }
 
     render() {
+        //xforms
+        let formkeys = Object.keys(this.state.formdata);
+
+        //this is NOT a deep copy
+        let formdatacopy = this.state.formdata;
+        let forminputs = formkeys.map((data) => {
+            return (
+                <Form
+                    key={formdatacopy[data].elementtype}
+                    formtype={data.elementtype}
+                    htmlprops={formdatacopy[data].elementconfig} />
+            )
+        });
 
         let coins = <div>Loading...</div>
         let _statecoin = this.state.coins;
@@ -44,10 +63,10 @@ class CoinList extends Component {
             });
         }
 
-        console.log(coins);
 
         return (
             <div className={classes.Coinlist}>
+                {forminputs}
                 {coins}
             </div>
         );
