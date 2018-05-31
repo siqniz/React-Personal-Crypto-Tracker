@@ -1,0 +1,12 @@
+.Coinlist{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px
+}
+
+.Coinlist a:visited,
+.Coinlist a:visited{
+    color: cornflowerblue;
+}

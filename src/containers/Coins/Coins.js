@@ -28,15 +28,14 @@ class Coins extends Component {
     }
 
     render() {
-        //console.log(this.state.btc)
         let _btccoin = <div> Bitcoin asdsad API didn't load correctly</div>
         let _btc = this.state.btc;
         console.log(this.state.btc);
 
-        //_btccoin = <Coin price={this.state.btc.PRICE} />
 
         return (
             <div>
+                asd
                 {_btccoin}
             </div>
         )

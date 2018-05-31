@@ -1,0 +1,32 @@
+.Layout{
+    width: 75%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    background-color: lightcoral;
+    font-weight: bold
+}
+
+.Layout .ul{
+    list-style-type: none;
+}
+
+.Layout ul li{
+    display: inline-block;
+     padding: 5px 50px 5px;
+     margin: 5px;
+}
+
+
+.Layout ul li:hover{
+background-color: lightgray;
+}
+
+a{
+    text-decoration: none
+}
+
+.Layout a:visited,
+.Layout a:visited{
+    color: darkcyan
+}
