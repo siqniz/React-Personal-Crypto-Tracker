@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from '../../axios';
 
+//css
+import classes from './CoinViewer.css';
+
 
 class CoinViewer extends Component {
 
@@ -11,52 +14,46 @@ class CoinViewer extends Component {
     }
 
     componentDidMount() {
-        //console.log('componentDidMount')
+        console.log('componentDidMount');
+        this.getCurrentCoin();
     }
 
     componentWillMount() {
-        console.log('componentWillMount')
-        //this.getCompleteCoinData();
+
     }
 
     componentWillUpdate() {
         console.log('componentWillUpdate');
-
-        if (this.props.match.params.id != this.state.id) {
-            //this.getCompleteCoinData();
-        }
-
     }
 
     componentDidUpdate() {
-        if (this.props.match.params.id != this.state.id) {
-            console.log('componentDidUpdate');
-            //     //need to check for same props so we don't get 2x updates
-            this.getCompleteCoinData();
-        }
+        console.log('componentDidUpdate');
+        this.getCurrentCoin();
     }
 
-    getCompleteCoinData() {
+    getCurrentCoin() {
+        const _this = this;
         let _id = this.props.match.params.id.toUpperCase();
 
-        console.log(this.state.id);
+        if (_id != _this.state.id.toUpperCase()) {
 
-        axios.get('/data/pricemultifull?fsyms=' + _id + '&tsyms=USD').then((resp) => {
-            let _currentcoin = { ...resp.data.RAW.BTC.USD, ticker: _id };
-            this.setState({ coin: _currentcoin, hasLoaded: true, id: _id });
-            console.log(this.state.hasLoaded);
-        });
-
-
+            axios.get('/data/pricemultifull?fsyms=' + _id + '&tsyms=USD')
+                .then(resp => {
+                    let _currentcoin = { ...resp.data.RAW.BTC.USD, ticker: _id };
+                    _this.setState({ id: _id, coin: _currentcoin });
+                });
+        }
     }
 
 
     render() {
-
-
         return (
-            <div>
-                CoinViewer Component: {this.state.id} sads
+            <div className={classes.CoinViewer}>
+                <div className={classes.DisplayLabel}>
+                    <div><label>Symbol: </label> {this.state.coin.ticker}</div>
+                    <div><label>Price: </label> {this.state.coin.PRICE}</div>
+                    <label>24H Volume:</label>
+                </div>
             </div>
         )
     }
