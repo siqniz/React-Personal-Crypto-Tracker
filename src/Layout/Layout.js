@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter, Route } from 'react-router-dom';
+import { NavLink,  Route } from 'react-router-dom';
 
 import Coin from '../componenets/CoinList/Coin/Coin';
 import Form from '../componenets/Forms/Forms';

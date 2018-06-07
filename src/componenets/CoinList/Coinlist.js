@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 import Coin from './Coin/Coin';
 import classes from './Coinlist.css';
-import btcaxois from '../../axios'
-import Form from '../Forms/Forms'
-
+import btcaxois from '../../axios';
+import Form from '../Forms/Forms';
+import COINS from '../../coins';
+import CoinViewer from '../CoinViewer/CoinViewer';
 
 class CoinList extends Component {
+
 
     state = {
         formdata: {
@@ -31,9 +33,16 @@ class CoinList extends Component {
             this.setState({ coins: { btc: { ..._btc, key: 'BTC' } } });
             this.setState({ isLoaded: true });
         });
+
+        let _mycoins = COINS.map((coinid) => {
+            btcaxois.get('/' + coinid).then((resp) => {
+                console.log(resp);
+            });
+        });
     }
 
     render() {
+
         //xforms
         let formkeys = Object.keys(this.state.formdata);
 
@@ -54,7 +63,9 @@ class CoinList extends Component {
         if (this.state.isLoaded) {
             coins = Object.keys(this.state.coins).map((coin) => {
                 return (
-                    <NavLink key={coin} to={'/' + coin}>
+                    <NavLink key={coin} to={{
+                        pathname: '/' + coin
+                    }}>
                         <Coin
                             price={_statecoin[coin].btc.PRICE}
                             ticker={coin} />
@@ -72,7 +83,7 @@ class CoinList extends Component {
                     {coins}
                 </div>
                 <div className={classes.Threepanel}>
-                    Individal coins will display on this planel
+                    <Route path="/:id" component={CoinViewer} />
                 </div>
             </div>
         );
